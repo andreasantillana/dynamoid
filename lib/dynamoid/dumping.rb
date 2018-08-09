@@ -42,6 +42,7 @@ module Dynamoid
 
     class Base
       def initialize(options)
+        Rails.logger.info("==== OPTIONS #{options} =====")
         @options = options
       end
 
@@ -85,8 +86,10 @@ module Dynamoid
                               options[:store_as_string]
                             end
 
+        milliseconds = (options[:milliseconds_precision] || 0).to_i
+
         if use_string_format
-          value.iso8601
+          value.iso8601(milliseconds)
         else
           unless value.respond_to?(:to_i) && value.respond_to?(:nsec)
             value = value.to_time
@@ -111,8 +114,10 @@ module Dynamoid
                               options[:store_as_string]
                             end
 
+        milliseconds = (options[:milliseconds_precision] || 0).to_i
+
         if use_string_format
-          value.to_date.iso8601
+          value.to_date.iso8601(milliseconds)
         else
           (value.to_date - Dynamoid::Persistence::UNIX_EPOCH_DATE).to_i
         end
