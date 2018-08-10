@@ -80,6 +80,7 @@ module Dynamoid
       private
 
       def format_datetime(value, options)
+        Rails.logger.info("======= OPTIONS FORMAT DATETIME #{options} ======")
         use_string_format = if options[:store_as_string].nil?
                               Dynamoid.config.store_datetime_as_string
                             else

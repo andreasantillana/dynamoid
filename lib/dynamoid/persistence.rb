@@ -49,7 +49,7 @@ module Dynamoid
           local_secondary_indexes: local_secondary_indexes.values,
           global_secondary_indexes: global_secondary_indexes.values
         }.merge(options)
-
+        Rails.logger.info("======= CREATING TABLE #{options} =====")
         Dynamoid.adapter.create_table(options[:table_name], options[:id], options)
       end
 
