@@ -90,6 +90,7 @@ module Dynamoid
         milliseconds = (options[:milliseconds_precision] || 0).to_i
 
         if use_string_format
+          Rails.logger.info("====== SAVING DATE AS #{value.iso8601(milliseconds)} ======")
           value.iso8601(milliseconds)
         else
           unless value.respond_to?(:to_i) && value.respond_to?(:nsec)
