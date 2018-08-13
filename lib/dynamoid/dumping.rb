@@ -42,7 +42,7 @@ module Dynamoid
 
     class Base
       def initialize(options)
-        Rails.logger.info("==== OPTIONS #{options} =====")
+        Rails.logger.info("==== DUMPING BASE INITIALIZE OPTIONS #{options} =====")
         @options = options
       end
 
