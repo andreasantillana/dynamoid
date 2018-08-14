@@ -42,7 +42,6 @@ module Dynamoid
 
     class Base
       def initialize(options)
-        Rails.logger.info("==== DUMPING BASE INITIALIZE OPTIONS #{options} =====")
         @options = options
       end
 
@@ -80,7 +79,6 @@ module Dynamoid
       private
 
       def format_datetime(value, options)
-        Rails.logger.info("======= OPTIONS FORMAT DATETIME #{options} ======")
         use_string_format = if options[:store_as_string].nil?
                               Dynamoid.config.store_datetime_as_string
                             else
@@ -116,10 +114,8 @@ module Dynamoid
                               options[:store_as_string]
                             end
 
-        milliseconds = (options[:milliseconds_precision] || 0).to_i
-
         if use_string_format
-          value.to_date.iso8601(milliseconds)
+          value.to_date.iso8601
         else
           (value.to_date - Dynamoid::Persistence::UNIX_EPOCH_DATE).to_i
         end
