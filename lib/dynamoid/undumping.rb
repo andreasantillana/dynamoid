@@ -90,6 +90,7 @@ module Dynamoid
                             else
                               @options[:store_as_string]
                             end
+        Rails.logger.info("======== VALUE #{value} OPTS #{@options} ======")
         value = DateTime.iso8601(value).to_time.to_i if use_string_format
         ApplicationTimeZone.at(value)
       end
