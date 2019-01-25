@@ -96,7 +96,7 @@ module Dynamoid
             value.strftime(options[:strftime])
           else
             Rails.logger.info("======== ELSE ======")
-            puts "======= ELSE =======")
+            puts "======= ELSE ======="
             value.iso8601(milliseconds)
           end
         else
