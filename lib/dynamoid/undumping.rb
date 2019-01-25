@@ -11,6 +11,8 @@ module Dynamoid
     end
 
     def self.undump_field(value, options)
+      Rails.logger.info("====== UNDUMPING #{value} OPTS #{options} =====")
+      puts("====== UNDUMPING #{value} OPTS #{options} =====")
       undumper = find_undumper(options)
 
       if undumper.nil?
