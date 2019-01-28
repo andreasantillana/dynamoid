@@ -92,8 +92,11 @@ module Dynamoid
                             end
 
         if use_string_format
-          value = DateTime.parse(value)
-          value = DateTime.iso8601(value).to_time.to_i
+          if @options[:strftime].present?
+            value = DateTime.parse(value).to_time.to_i
+          else
+            value = DateTime.iso8601(value).to_time.to_i
+          end
         end
 
         ApplicationTimeZone.at(value)
