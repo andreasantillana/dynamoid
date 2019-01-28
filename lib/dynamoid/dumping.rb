@@ -88,15 +88,9 @@ module Dynamoid
         milliseconds = (options[:milliseconds_precision] || 0).to_i
 
         if use_string_format
-          puts "USING STRING FORMAT "
-          Rails.logger.info("====== USING STRING FORMAT =====")
           if options[:strftime]
-            Rails.logger.info("======= STRFTIME #{options[:strftime]} ======")
-            puts("======= STRFTIME #{options[:strftime]} ======")
             value.strftime(options[:strftime])
           else
-            Rails.logger.info("======== ELSE ======")
-            puts "======= ELSE ======="
             value.iso8601(milliseconds)
           end
         else
