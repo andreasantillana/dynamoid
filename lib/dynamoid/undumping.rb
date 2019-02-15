@@ -111,6 +111,9 @@ module Dynamoid
 
       if use_string_format
         Rails.logger.info("USING STRING FORMAT")
+        Date.iso8601(value)
+      end
+        Rails.logger.info("USING STRING FORMAT")
       end
 
         if use_string_format
