@@ -109,6 +109,10 @@ module Dynamoid
                               @options[:store_as_string]
                             end
 
+      if use_string_format
+        Rails.logger.info("USING STRING FORMAT")
+      end
+
         if use_string_format
           Date.iso8601(value)
         end
