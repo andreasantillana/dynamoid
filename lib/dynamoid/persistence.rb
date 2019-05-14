@@ -21,7 +21,13 @@ module Dynamoid
         table_base_name = options[:name] || base_class.name.split('::').last
                                                       .downcase.pluralize
 
-        @table_name ||= [Dynamoid::Config.namespace.to_s, table_base_name].reject(&:empty?).join('_')
+        table_prefix = if Dynamoid::Config.namespace.nil? then
+          ''
+        else
+          "#{Dynamoid::Config.namespace}_"
+        end
+
+        @table_name ||= "#{table_prefix}#{table_base_name}"
       end
 
       # Creates a table.
