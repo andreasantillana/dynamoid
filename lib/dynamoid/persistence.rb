@@ -18,14 +18,14 @@ module Dynamoid
 
     module ClassMethods
       def table_name
-        if options[:table_name].present?
-          @table_name ||= options[:table_name]
-        else
+#        if options[:table_name].present?
+#          @table_name ||= options[:table_name]
+#        else
           table_base_name = options[:name] || base_class.name.split('::').last
                                                       .downcase.pluralize
 
           @table_name ||= [Dynamoid::Config.namespace.to_s, table_base_name].reject(&:empty?).join('_')
-        end
+#        end
       end
 
       # Creates a table.
