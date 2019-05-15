@@ -39,7 +39,6 @@ module Dynamoid
       # @option options [Symbol] :hash_key_type the dynamo type of the hash key (:string or :number)
       # @since 0.4.0
       def create_table(options = {})
-        Dynamoid.logger.info("===== CREATING PERSISTENCE TABLE NA<E #{table_name} OPTS #{options} ====")
         range_key_hash = if range_key
                            { range_key => PrimaryKeyTypeMapping.dynamodb_type(attributes[range_key][:type], attributes[range_key]) }
                          end
