@@ -285,6 +285,7 @@ module Dynamoid
         if options[:table_name].present?
           table_name = options[:table_name]
         end
+        Dynamoid.logger.info "CALLER CREATE TABLE #{caller.to_s}"
         Dynamoid.logger.info "OPTIONS CREATE TABLE #{options}"
         Dynamoid.logger.info "Creating #{table_name} table. This could take a while."
         read_capacity = options[:read_capacity] || Dynamoid::Config.read_capacity
