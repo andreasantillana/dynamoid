@@ -282,6 +282,10 @@ module Dynamoid
       # @option options [Boolean] sync Wait for table status to be ACTIVE?
       # @since 1.0.0
       def create_table(table_name, key = :id, options = {})
+        if options[:table_name].present?
+          table_name = options.delete(:table_name)
+        end
+
         Dynamoid.logger.info "Creating #{table_name} table. This could take a while."
         read_capacity = options[:read_capacity] || Dynamoid::Config.read_capacity
         write_capacity = options[:write_capacity] || Dynamoid::Config.write_capacity
