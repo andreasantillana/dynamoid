@@ -103,15 +103,24 @@ module Dynamoid
 
     class DateUndumper < Base
       def process(value)
-        use_string_format = if @options[:store_as_string].nil?
+      use_string_format = if @options[:store_as_string].nil?
                               Dynamoid.config.store_date_as_string
                             else
                               @options[:store_as_string]
                             end
 
+      if use_string_format
+        Rails.logger.info("USING STRING FORMAT")
+        Date.iso8601(value)
+      end
+        Rails.logger.info("USING STRING FORMAT")
+      end
+
         if use_string_format
           Date.iso8601(value)
-        else
+        end
+
+        if !use_string_format
           Dynamoid::Persistence::UNIX_EPOCH_DATE + value.to_i
         end
       end
